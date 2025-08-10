@@ -1,0 +1,332 @@
+// 与主题保持一致的颜色变量
+@primary-color: #1677ff;
+@primary-gradient: linear-gradient(135deg, #1677ff 0%, #0d47a1 100%);
+@primary-light: #f0f7ff;
+@primary-hover: rgba(22, 119, 255, 0.04);
+@primary-selected: rgba(22, 119, 255, 0.12);
+@glass-bg: rgba(255, 255, 255, 0.95);
+@glass-border: rgba(22, 119, 255, 0.15);
+@shadow-sm: 0 2px 8px rgba(22, 119, 255, 0.08);
+@shadow-md: 0 4px 16px rgba(22, 119, 255, 0.12);
+@shadow-lg: 0 8px 24px rgba(22, 119, 255, 0.15);
+
+.messageItem {
+  padding: 20px 0;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.4s ease;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .messageItemSection {
+    display: flex;
+    width: 100%;
+  }
+
+  .messageItemSectionLeft {
+    justify-content: flex-start;
+  }
+
+  .messageItemSectionRight {
+    justify-content: flex-end;
+  }
+
+  .messageItemContent {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+    max-width: 75%; // 限制最大宽度为75%
+    width: fit-content; // 根据内容自适应宽度
+  }
+
+  .messageItemContentReverse {
+    flex-direction: row-reverse;
+  }
+
+  // 头像样式优化
+  :global(.ant-avatar) {
+    border: 2px solid @glass-border;
+    box-shadow: @shadow-sm;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: @shadow-md;
+      border-color: @primary-color;
+    }
+  }
+
+  // 助手图标样式
+  :global(.assistant-icon) {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: @primary-gradient;
+    padding: 8px;
+    box-shadow: @shadow-sm;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: @shadow-md;
+    }
+  }
+
+  .messageTextBase() {
+    padding: 16px 20px;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: @shadow-sm;
+    transition: all 0.3s ease;
+    word-break: break-word;
+    line-height: 1.6;
+    font-size: 14px;
+
+    &:hover {
+      box-shadow: @shadow-md;
+      transform: translateY(-1px);
+    }
+
+    & > p {
+      margin: 0;
+    }
+
+    // 消息气泡箭头
+    &::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+    }
+  }
+
+  // 助手消息样式
+  .messageText {
+    .chunkText();
+    .messageTextBase();
+    background: @glass-bg;
+    border: 1px solid @glass-border;
+    margin-right: 48px;
+    border-radius: 16px 16px 16px 4px;
+
+    &::before {
+      left: -20px;
+      border-right-color: @glass-bg;
+    }
+  }
+
+  .messageTextDark {
+    .chunkText();
+    .messageTextBase();
+    background: rgba(51, 65, 85, 0.9);
+    border: 1px solid rgba(71, 85, 105, 0.3);
+    color: #e2e8f0;
+    margin-right: 48px;
+    border-radius: 16px 16px 16px 4px;
+
+    &::before {
+      left: -20px;
+      border-right-color: rgba(51, 65, 85, 0.9);
+    }
+
+    :global(section.think) {
+      color: #94a3b8;
+      border-left-color: rgba(71, 85, 105, 0.5);
+      background: rgba(71, 85, 105, 0.3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 12px 0;
+    }
+  }
+
+  // 用户消息样式
+  .messageUserText {
+    .chunkText();
+    .messageTextBase();
+    background: linear-gradient(135deg, #e6f4ff 0%, #f0f7ff 100%);
+    border: 1px solid @glass-border;
+    color: #1a1a1a;
+    margin-left: 48px;
+    border-radius: 16px 16px 4px 16px;
+
+    &::before {
+      right: -20px;
+      border-left-color: #e6f4ff;
+    }
+  }
+
+  .messageEmpty {
+    width: 100%;
+    min-width: 300px;
+    background: @primary-light;
+    border: 1px dashed @primary-color;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    color: @primary-color;
+  }
+
+  .thumbnailImg {
+    max-width: 24px;
+    border-radius: 4px;
+    box-shadow: @shadow-sm;
+  }
+
+  // 操作按钮组样式
+  :global(.ant-radio-group) {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid @glass-border;
+    border-radius: 8px;
+    box-shadow: @shadow-sm;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: @shadow-md;
+    }
+
+    :global(.ant-radio-button-wrapper) {
+      border: none;
+      background: transparent;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: @primary-hover;
+        color: @primary-color;
+      }
+
+      &:first-child {
+        border-radius: 8px 0 0 8px;
+      }
+
+      &:last-child {
+        border-radius: 0 8px 8px 0;
+      }
+    }
+  }
+
+  // 文档列表样式
+  :global(.ant-list-bordered) {
+    border: 1px solid @glass-border;
+    border-radius: 12px;
+    background: @glass-bg;
+    box-shadow: @shadow-sm;
+    margin-top: 12px;
+
+    :global(.ant-list-item) {
+      border-bottom-color: @glass-border;
+      padding: 12px 16px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: @primary-hover;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.messageItemLeft {
+  text-align: left;
+
+  .messageItemSection {
+    justify-content: flex-start;
+  }
+
+  .messageItemContent {
+    margin-right: auto; // 确保内容靠左对齐
+  }
+}
+
+.messageItemRight {
+  text-align: right;
+
+  .messageItemSection {
+    justify-content: flex-end;
+  }
+
+  .messageItemContent {
+    margin-left: auto; // 确保内容靠右对齐
+  }
+}
+
+// 暗色主题适配
+:global(.dark) {
+  .messageItem {
+    .messageText {
+      background: rgba(51, 65, 85, 0.9);
+      border-color: rgba(71, 85, 105, 0.3);
+      color: #e2e8f0;
+
+      &::before {
+        border-right-color: rgba(51, 65, 85, 0.9);
+      }
+    }
+
+    .messageUserText {
+      background: rgba(22, 119, 255, 0.15);
+      border-color: rgba(22, 119, 255, 0.3);
+      color: #e2e8f0;
+
+      &::before {
+        border-left-color: rgba(22, 119, 255, 0.15);
+      }
+    }
+
+    :global(.ant-radio-group) {
+      background: rgba(51, 65, 85, 0.9);
+      border-color: rgba(71, 85, 105, 0.3);
+    }
+
+    :global(.ant-list-bordered) {
+      background: rgba(51, 65, 85, 0.9);
+      border-color: rgba(71, 85, 105, 0.3);
+    }
+  }
+}
+.messageItem {
+  // 用户头像样式
+  :global(.user-avatar) {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(22, 119, 255, 0.25) !important;
+    }
+  }
+
+  // 助手头像样式
+  :global(.assistant-avatar) {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(82, 196, 26, 0.25) !important;
+    }
+  }
+
+  // 暗色主题适配
+  :global(.dark) & {
+    :global(.user-avatar) {
+      border-color: rgba(22, 119, 255, 0.4) !important;
+    }
+
+    :global(.assistant-avatar) {
+      border-color: rgba(82, 196, 26, 0.4) !important;
+    }
+  }
+}

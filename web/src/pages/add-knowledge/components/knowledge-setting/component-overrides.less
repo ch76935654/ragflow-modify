@@ -1,0 +1,69 @@
+// 组件容器样式重置 - 移除灰色背景框
+:global {
+  // 数据集配置容器
+  .dataset-configuration-container,
+  .parse-configuration-container,
+  .similarity-slider-container,
+  .rerank-container,
+  .page-rank-container,
+  .auto-keywords-container,
+  .auto-questions-container,
+  .layout-recognize-container,
+  .max-token-container,
+  .delimiter-container,
+  .entity-types-container,
+  .excel-to-html-container,
+  .cross-language-container,
+  .use-knowledge-graph-container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    // 移除容器内部的边框和背景
+    .ant-card,
+    .ant-card-body,
+    .ant-card-head {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    // 确保内部分割线正常显示
+    .ant-divider {
+      border-color: #e5e7eb;
+      margin: 24px 0;
+
+      .dark & {
+        border-color: #374151;
+      }
+    }
+  }
+
+  // GraphRAG 容器特殊处理
+  .graph-rag-container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 24px !important;
+
+    .ant-card {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  // 标签相关容器
+  .tag-items-container,
+  .tag-set-container,
+  .topn-tags-container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}

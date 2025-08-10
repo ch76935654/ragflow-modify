@@ -1,0 +1,346 @@
+@import '../../theme/vars';
+
+.modernLoginPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+
+  :global(.dark) & {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+  }
+}
+
+.loginContainer {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 48px;
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  }
+
+  :global(.dark) & {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      rgba(22, 119, 255, 0.05),
+      rgba(118, 75, 162, 0.05)
+    );
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -30%;
+    width: 60%;
+    height: 60%;
+    background: linear-gradient(
+      45deg,
+      rgba(102, 126, 234, 0.03),
+      rgba(22, 119, 255, 0.03)
+    );
+    border-radius: 50%;
+    z-index: 0;
+  }
+}
+
+.loginContent {
+  position: relative;
+  z-index: 1;
+}
+
+.loginHeader {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.loginTitle {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+
+  :global(.dark) & {
+    color: #ffffff;
+  }
+}
+
+.loginDescription {
+  font-size: 16px;
+  color: #666666;
+  font-weight: 400;
+  line-height: 1.5;
+
+  :global(.dark) & {
+    color: #cccccc;
+  }
+}
+
+.authTabs {
+  margin-bottom: 24px;
+
+  .ant-tabs-nav {
+    margin-bottom: 32px;
+  }
+
+  .ant-tabs-tab {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+
+    &.ant-tabs-tab-active {
+      .ant-tabs-tab-btn {
+        color: #1677ff;
+      }
+    }
+  }
+
+  .ant-tabs-ink-bar {
+    background: #1677ff;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  :global(.dark) & {
+    .ant-tabs-tab {
+      color: #cccccc;
+
+      &.ant-tabs-tab-active {
+        .ant-tabs-tab-btn {
+          color: #1677ff;
+        }
+      }
+    }
+  }
+}
+
+.authForm {
+  .ant-form-item {
+    margin-bottom: 24px;
+  }
+
+  .ant-form-item-label > label {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 14px;
+
+    :global(.dark) & {
+      color: #ffffff;
+    }
+  }
+
+  .ant-input,
+  .ant-input-password {
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    font-size: 14px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #1677ff;
+    }
+
+    &:focus {
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
+    }
+
+    :global(.dark) & {
+      background: #2a2a2a;
+      border-color: #404040;
+      color: #ffffff;
+
+      &:hover {
+        border-color: #1677ff;
+      }
+    }
+  }
+
+  .ant-btn-primary {
+    height: 48px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #1677ff, #1890ff);
+    border: none;
+    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+    transition: all 0.2s ease;
+    margin-top: 16px;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(22, 119, 255, 0.4);
+      background: linear-gradient(135deg, #1890ff, #40a9ff);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .ant-checkbox-wrapper {
+    font-size: 14px;
+    color: #666666;
+
+    :global(.dark) & {
+      color: #cccccc;
+    }
+  }
+}
+
+.thirdPartyLogin {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #f0f0f0;
+
+  :global(.dark) & {
+    border-top-color: #333;
+  }
+
+  .thirdPartyTitle {
+    text-align: center;
+    font-size: 14px;
+    color: #999999;
+    margin-bottom: 16px;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: #e5e5e5;
+
+      :global(.dark) & {
+        background: #404040;
+      }
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+
+  .ant-btn {
+    height: 48px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    border: 1px solid #e5e5e5;
+    background: #ffffff;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #1677ff;
+      color: #1677ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    :global(.dark) & {
+      background: #2a2a2a;
+      border-color: #404040;
+      color: #ffffff;
+
+      &:hover {
+        border-color: #1677ff;
+        color: #1677ff;
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .modernLoginPage {
+    padding: 16px;
+  }
+
+  .loginContainer {
+    padding: 32px 24px;
+    max-width: 100%;
+  }
+
+  .loginTitle {
+    font-size: 28px;
+  }
+
+  .loginDescription {
+    font-size: 14px;
+  }
+
+  .authTabs {
+    .ant-tabs-tab {
+      font-size: 14px;
+      padding: 10px 16px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .loginContainer {
+    padding: 24px 20px;
+  }
+
+  .loginTitle {
+    font-size: 24px;
+  }
+
+  .authForm {
+    .ant-input,
+    .ant-input-password,
+    .ant-btn-primary {
+      height: 44px;
+    }
+  }
+}
+
+// 动画效果
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loginContainer {
+  animation: slideUp 0.6s ease;
+}

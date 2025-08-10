@@ -1,0 +1,590 @@
+// 现代化知识库列表样式
+.knowledge {
+  min-height: 100vh;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  width: 100%;
+
+  :global(.dark) & {
+    background: #0a0a0a;
+  }
+}
+
+.knowledgeContent {
+  width: 100%;
+  padding: 32px 40px;
+  box-sizing: border-box;
+}
+
+// 头部区域
+.headerSection {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0;
+
+  :global(.dark) & {
+    border-bottom: 1px solid #262626;
+  }
+}
+
+.actionSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchInput {
+  width: 400px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #1677ff;
+    box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
+  }
+
+  &:focus-within {
+    border-color: #1677ff;
+    box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);
+  }
+
+  :global(.dark) & {
+    background: #1a1a1a;
+    border-color: #404040;
+
+    &:hover {
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.2);
+    }
+
+    &:focus-within {
+      border-color: #1677ff;
+      box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.2);
+    }
+  }
+
+  :global(.ant-input) {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+
+    &::placeholder {
+      color: #a0a0a0;
+    }
+
+    :global(.dark) & {
+      color: #ffffff;
+
+      &::placeholder {
+        color: #666666;
+      }
+    }
+  }
+
+  :global(.ant-input-prefix) {
+    color: #a0a0a0;
+
+    :global(.dark) & {
+      color: #666666;
+    }
+  }
+}
+
+.statInfo {
+  font-size: 14px;
+  color: #666666;
+  font-weight: 500;
+
+  :global(.dark) & {
+    color: #a0a0a0;
+  }
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+}
+
+.createButton {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(22, 119, 255, 0.4);
+    background: linear-gradient(135deg, #0958d9 0%, #003eb3 100%);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  :global(.anticon) {
+    font-size: 16px;
+  }
+}
+
+// 内容区域
+.contentSection {
+  width: 100%;
+}
+
+.loadingWrapper {
+  width: 100%;
+  min-height: 400px;
+}
+
+.scrollContainer {
+  width: 100%;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+// 知识库列表样式
+.knowledgeList {
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  overflow: hidden;
+
+  :global(.dark) & {
+    background: #1a1a1a;
+    border-color: #333333;
+  }
+}
+
+.listHeader {
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 32px;
+  display: grid;
+  grid-template-columns: 2fr 120px 140px 80px;
+  gap: 24px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666666;
+
+  :global(.dark) & {
+    background: #262626;
+    border-bottom-color: #404040;
+    color: #a0a0a0;
+  }
+
+  > div:nth-child(1) {
+    text-align: left;
+  }
+
+  > div:nth-child(2) {
+    text-align: center;
+  }
+
+  > div:nth-child(3) {
+    text-align: center;
+  }
+
+  > div:nth-child(4) {
+    text-align: center;
+  }
+}
+
+.knowledgeItem {
+  border-bottom: 1px solid #f5f5f5;
+  padding: 24px 32px;
+  display: grid;
+  grid-template-columns: 2fr 120px 140px 80px;
+  gap: 24px;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 80px;
+
+  &:hover {
+    background: #f8f9fa;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  :global(.dark) & {
+    border-bottom-color: #262626;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+  }
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 8px 0;
+  align-self: center;
+}
+
+.title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #1a1a1a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  :global(.dark) & {
+    color: #ffffff;
+  }
+}
+
+.description {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #666666;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+
+  :global(.dark) & {
+    color: #a0a0a0;
+  }
+}
+
+.docCount {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1677ff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  :global(.dark) & {
+    color: #4096ff;
+  }
+}
+
+.updateTime {
+  font-size: 13px;
+  font-weight: 400;
+  color: #a0a0a0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  :global(.dark) & {
+    color: #666666;
+  }
+}
+
+.operateSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.operateButton {
+  opacity: 0;
+  padding: 8px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #a0a0a0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #f5f5f5;
+    color: #666666;
+  }
+
+  :global(.dark) & {
+    color: #666666;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #a0a0a0;
+    }
+  }
+
+  :global(.anticon) {
+    font-size: 16px;
+  }
+}
+
+.teamBadge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 8px;
+
+  &.teamBadgeOther {
+    background: linear-gradient(135deg, #ff4d4f 0%, #cf1322 100%);
+  }
+}
+
+// 空状态
+.emptyState {
+  text-align: center;
+  padding: 80px 24px;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  margin: 40px 0;
+
+  :global(.dark) & {
+    background: #1a1a1a;
+    border-color: #333333;
+  }
+
+  :global(.ant-empty-description) {
+    color: #666666;
+    font-size: 16px;
+    font-weight: 500;
+
+    :global(.dark) & {
+      color: #a0a0a0;
+    }
+  }
+}
+
+// 加载更多
+.loadingMore {
+  text-align: center;
+  padding: 32px;
+  color: #a0a0a0;
+  font-size: 14px;
+  font-weight: 500;
+
+  :global(.dark) & {
+    color: #666666;
+  }
+}
+
+.endMessage {
+  text-align: center;
+  padding: 32px;
+  color: #a0a0a0;
+  font-size: 14px;
+  font-weight: 500;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 32px;
+
+  :global(.dark) & {
+    color: #666666;
+    border-top-color: #333333;
+  }
+}
+
+// 加载骨架
+.listSkeleton {
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  overflow: hidden;
+
+  :global(.dark) & {
+    background: #1a1a1a;
+    border-color: #333333;
+  }
+}
+
+.skeletonItem {
+  padding: 24px 32px;
+  border-bottom: 1px solid #f5f5f5;
+  display: grid;
+  grid-template-columns: 2fr 120px 140px 80px;
+  gap: 24px;
+  align-items: center;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  :global(.dark) & {
+    border-bottom-color: #262626;
+  }
+}
+
+// 响应式设计
+@media (max-width: 1200px) {
+  .knowledgeContent {
+    padding: 24px 32px;
+  }
+
+  .searchInput {
+    width: 320px;
+  }
+
+  .listHeader,
+  .knowledgeItem,
+  .skeletonItem {
+    grid-template-columns: 2fr 100px 120px 60px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .knowledgeContent {
+    padding: 20px 16px;
+  }
+
+  .actionSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .leftSection {
+    justify-content: flex-start;
+  }
+
+  .rightSection {
+    justify-content: flex-end;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  .listHeader,
+  .knowledgeItem {
+    grid-template-columns: 1fr 80px;
+    gap: 16px;
+    padding: 20px 16px;
+
+    .docCount,
+    .updateTime {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .knowledgeContent {
+    padding: 16px 12px;
+  }
+
+  .headerSection {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+  }
+
+  .listHeader,
+  .knowledgeItem {
+    padding: 16px;
+    grid-template-columns: 1fr 60px;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}
+
+// 动画效果
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes listItemAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.knowledgeContent {
+  animation: fadeInUp 0.6s ease;
+}
+
+.knowledgeItem {
+  animation: listItemAppear 0.4s ease;
+  animation-fill-mode: both;
+
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  &:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  &:nth-child(4) {
+    animation-delay: 0.25s;
+  }
+  &:nth-child(5) {
+    animation-delay: 0.3s;
+  }
+  &:nth-child(6) {
+    animation-delay: 0.35s;
+  }
+  &:nth-child(7) {
+    animation-delay: 0.4s;
+  }
+  &:nth-child(8) {
+    animation-delay: 0.45s;
+  }
+  &:nth-child(9) {
+    animation-delay: 0.5s;
+  }
+  &:nth-child(10) {
+    animation-delay: 0.55s;
+  }
+  &:nth-child(n + 11) {
+    animation-delay: 0.6s;
+  }
+}

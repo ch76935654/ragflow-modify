@@ -1,0 +1,596 @@
+// 现代化文件上传模态框样式 - 匹配Header风格
+.fileUploadModal {
+  // 模态框容器样式
+  :global(.ant-modal-mask) {
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+  }
+
+  :global(.ant-modal-wrap) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(.ant-modal) {
+    top: 0;
+    margin: 0;
+    max-width: 90vw;
+    width: 640px;
+  }
+
+  :global(.ant-modal-content) {
+    border-radius: 12px;
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease;
+    background: #ffffff;
+
+    :global(.dark) & {
+      background: #1a1a1a;
+      box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.3),
+        0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  // 模态框头部
+  :global(.ant-modal-header) {
+    background: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 24px;
+    margin: 0;
+
+    :global(.dark) & {
+      background: #1a1a1a;
+      border-bottom: 1px solid #333;
+    }
+
+    :global(.ant-modal-title) {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.02em;
+      margin: 0;
+
+      :global(.dark) & {
+        color: #ffffff;
+      }
+    }
+  }
+
+  // 关闭按钮
+  :global(.ant-modal-close) {
+    top: 20px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #f5f5f5;
+
+      :global(.dark) & {
+        background: rgba(255, 255, 255, 0.08);
+      }
+    }
+
+    :global(.ant-modal-close-x) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+      color: #666666;
+
+      :global(.dark) & {
+        color: #cccccc;
+      }
+    }
+  }
+
+  // 模态框主体
+  :global(.ant-modal-body) {
+    padding: 24px;
+    background: #ffffff;
+
+    :global(.dark) & {
+      background: #1a1a1a;
+    }
+  }
+
+  // 模态框底部
+  :global(.ant-modal-footer) {
+    background: #ffffff;
+    border-top: 1px solid #f0f0f0;
+    padding: 16px 24px;
+    text-align: right;
+
+    :global(.dark) & {
+      background: #1a1a1a;
+      border-top: 1px solid #333;
+    }
+
+    :global(.ant-btn) {
+      height: 36px;
+      padding: 0 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      margin-left: 8px;
+
+      &:global(.ant-btn-primary) {
+        background: #1677ff;
+        border-color: #1677ff;
+        box-shadow: 0 2px 4px rgba(22, 119, 255, 0.2);
+
+        &:hover {
+          background: #4096ff;
+          border-color: #4096ff;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 8px rgba(22, 119, 255, 0.3);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+
+      &:global(.ant-btn-default) {
+        border-color: #d9d9d9;
+        color: #666666;
+
+        &:hover {
+          color: #1677ff;
+          border-color: #1677ff;
+        }
+
+        :global(.dark) & {
+          border-color: #434343;
+          color: #cccccc;
+          background: transparent;
+
+          &:hover {
+            color: #ffffff;
+            border-color: #1677ff;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 内容容器
+.contentContainer {
+  :global(.ant-flex) {
+    gap: 20px;
+  }
+}
+
+// 解析选项区域
+.parseOption {
+  :global(.ant-checkbox-wrapper) {
+    background: #fafafa;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &:hover {
+      background: rgba(22, 119, 255, 0.04);
+      border-color: #1677ff;
+    }
+
+    :global(.dark) & {
+      background: #262626;
+      border-color: #434343;
+      color: #ffffff;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: #1677ff;
+      }
+    }
+
+    :global(.ant-checkbox) {
+      :global(.ant-checkbox-inner) {
+        border-color: #d9d9d9;
+        border-radius: 4px;
+        width: 16px;
+        height: 16px;
+        transition: all 0.2s ease;
+
+        :global(.dark) & {
+          border-color: #434343;
+          background: #262626;
+        }
+      }
+
+      &:global(.ant-checkbox-checked) {
+        :global(.ant-checkbox-inner) {
+          background: #1677ff;
+          border-color: #1677ff;
+
+          &::after {
+            border-color: #ffffff;
+          }
+        }
+      }
+
+      &:hover {
+        :global(.ant-checkbox-inner) {
+          border-color: #1677ff;
+        }
+      }
+    }
+  }
+}
+
+// 选项卡容器
+.tabsContainer {
+  :global(.ant-tabs) {
+    :global(.ant-tabs-nav) {
+      margin-bottom: 16px;
+
+      &::before {
+        border-bottom: 1px solid #f0f0f0;
+
+        :global(.dark) & {
+          border-color: #434343;
+        }
+      }
+    }
+
+    :global(.ant-tabs-tab) {
+      padding: 8px 16px;
+      margin: 0 8px 0 0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #666666;
+      transition: all 0.2s ease;
+      position: relative;
+
+      &:hover {
+        color: #1677ff;
+        background: rgba(22, 119, 255, 0.04);
+      }
+
+      &:global(.ant-tabs-tab-active) {
+        color: #1677ff;
+        background: rgba(22, 119, 255, 0.08);
+        font-weight: 600;
+
+        :global(.ant-tabs-tab-btn) {
+          color: #1677ff;
+        }
+      }
+
+      :global(.dark) & {
+        color: #cccccc;
+
+        &:hover {
+          color: #ffffff;
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        &:global(.ant-tabs-tab-active) {
+          color: #ffffff;
+          background: rgba(255, 255, 255, 0.12);
+
+          :global(.ant-tabs-tab-btn) {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
+    :global(.ant-tabs-ink-bar) {
+      background: #1677ff;
+      height: 2px;
+      border-radius: 1px;
+    }
+
+    :global(.ant-tabs-content-holder) {
+      background: #fafafa;
+      border-radius: 8px;
+      border: 1px solid #f0f0f0;
+      padding: 20px;
+
+      :global(.dark) & {
+        background: #262626;
+        border-color: #434343;
+      }
+    }
+  }
+}
+
+// 上传器样式
+.uploader {
+  :global(.ant-upload-drag) {
+    background: #ffffff;
+    border: 2px dashed #d9d9d9;
+    border-radius: 8px;
+    padding: 32px 20px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #1677ff;
+      background: rgba(22, 119, 255, 0.02);
+    }
+
+    :global(.dark) & {
+      background: #1a1a1a;
+      border-color: #434343;
+
+      &:hover {
+        border-color: #1677ff;
+        background: rgba(255, 255, 255, 0.02);
+      }
+    }
+
+    :global(.ant-upload-drag-icon) {
+      margin-bottom: 16px;
+
+      :global(.anticon) {
+        font-size: 40px;
+        color: #bfbfbf;
+        transition: all 0.2s ease;
+
+        :global(.dark) & {
+          color: #8c8c8c;
+        }
+      }
+    }
+
+    &:hover {
+      :global(.ant-upload-drag-icon) {
+        :global(.anticon) {
+          color: #1677ff;
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    :global(.ant-upload-text) {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+
+      :global(.dark) & {
+        color: #ffffff;
+      }
+    }
+
+    :global(.ant-upload-hint) {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.5;
+
+      :global(.dark) & {
+        color: #cccccc;
+      }
+    }
+  }
+
+  // 文件列表样式
+  :global(.ant-upload-list) {
+    max-height: 240px;
+    overflow-y: auto;
+    margin-top: 16px;
+    padding: 8px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+
+    :global(.dark) & {
+      background: #1a1a1a;
+      border-color: #434343;
+    }
+
+    // 滚动条样式
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f5f5f5;
+      border-radius: 3px;
+
+      :global(.dark) & {
+        background: #262626;
+      }
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #d9d9d9;
+      border-radius: 3px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #bfbfbf;
+      }
+
+      :global(.dark) & {
+        background: #434343;
+
+        &:hover {
+          background: #595959;
+        }
+      }
+    }
+
+    :global(.ant-upload-list-item) {
+      background: #fafafa;
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: #1677ff;
+        background: rgba(22, 119, 255, 0.02);
+      }
+
+      :global(.dark) & {
+        background: #262626;
+        border-color: #434343;
+
+        &:hover {
+          border-color: #1677ff;
+          background: rgba(255, 255, 255, 0.02);
+        }
+      }
+
+      :global(.ant-upload-list-item-name) {
+        color: #1a1a1a;
+        font-weight: 500;
+        font-size: 14px;
+
+        :global(.dark) & {
+          color: #ffffff;
+        }
+      }
+
+      :global(.ant-upload-list-item-card-actions) {
+        :global(.anticon) {
+          color: #8c8c8c;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: #ff4d4f;
+          }
+
+          :global(.dark) & {
+            color: #595959;
+
+            &:hover {
+              color: #ff7875;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 进度条样式
+.progressContainer {
+  margin-bottom: 16px;
+
+  :global(.ant-progress) {
+    :global(.ant-progress-bg) {
+      background: #1677ff;
+      border-radius: 1px;
+    }
+
+    :global(.ant-progress-outer) {
+      :global(.ant-progress-inner) {
+        background: #f5f5f5;
+        border-radius: 1px;
+
+        :global(.dark) & {
+          background: #434343;
+        }
+      }
+    }
+  }
+}
+
+// 错误提示样式
+.uploadLimit {
+  color: #ff4d4f;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: #fff2f0;
+  border-radius: 6px;
+  border-left: 3px solid #ff4d4f;
+
+  :global(.dark) & {
+    background: #2a1215;
+    color: #ff7875;
+  }
+}
+
+// 动画效果
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .fileUploadModal {
+    :global(.ant-modal) {
+      width: calc(100vw - 32px);
+      max-width: none;
+    }
+
+    :global(.ant-modal-header) {
+      padding: 16px 20px;
+    }
+
+    :global(.ant-modal-body) {
+      padding: 20px;
+    }
+
+    :global(.ant-modal-footer) {
+      padding: 12px 20px;
+    }
+  }
+
+  .uploader {
+    :global(.ant-upload-drag) {
+      padding: 24px 16px;
+
+      :global(.ant-upload-drag-icon) {
+        :global(.anticon) {
+          font-size: 32px;
+        }
+      }
+
+      :global(.ant-upload-text) {
+        font-size: 15px;
+      }
+
+      :global(.ant-upload-hint) {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .tabsContainer {
+    :global(.ant-tabs) {
+      :global(.ant-tabs-tab) {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+    }
+  }
+}

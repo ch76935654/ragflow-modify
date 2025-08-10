@@ -1,0 +1,241 @@
+// 现代化Header样式
+.modernHeader {
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 0;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  // 深色主题
+  :global(.dark) & {
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.headerContainer {
+  width: 100%;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 左侧内容区域（Logo + 导航）
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: 23px;
+}
+
+// Logo区域
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.logoIcon {
+  color: #1677ff;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+
+  .logoSection:hover & {
+    transform: scale(1.05);
+  }
+
+  :global(.dark) & {
+    color: #ffffff;
+  }
+}
+
+.logoText {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+
+  :global(.dark) & {
+    color: #ffffff;
+  }
+}
+
+// 导航区域
+.navigationSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 23px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666666;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:hover {
+    color: #1677ff;
+    background: rgba(22, 119, 255, 0.04);
+    text-decoration: none;
+  }
+
+  &.navItemActive {
+    color: #1677ff;
+    background: rgba(22, 119, 255, 0.08);
+    font-weight: 600;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: #1677ff;
+      border-radius: 1px;
+    }
+  }
+
+  :global(.dark) & {
+    color: #cccccc;
+
+    &:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    &.navItemActive {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+}
+
+.navIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+// 用户区域
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: default;
+  transition: all 0.2s ease;
+  background: transparent;
+
+  :global(.dark) & {
+    background: transparent;
+  }
+}
+
+.userIcon {
+  width: 16px;
+  height: 16px;
+  color: #666666;
+  flex-shrink: 0;
+
+  :global(.dark) & {
+    color: #cccccc;
+  }
+}
+
+.userEmail {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  white-space: nowrap;
+
+  :global(.dark) & {
+    color: #ffffff;
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .headerContainer {
+    padding: 0 16px;
+  }
+
+  .leftSection {
+    gap: 16px;
+  }
+
+  .navigationSection {
+    gap: 4px;
+  }
+
+  .navItem {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .userEmail {
+    display: none;
+  }
+
+  .userSection {
+    padding: 8px;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoText {
+    display: none;
+  }
+
+  .leftSection {
+    gap: 12px;
+  }
+
+  .navItem {
+    padding: 6px 8px;
+
+    span {
+      display: none;
+    }
+  }
+}
+
+// 动画效果
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modernHeader {
+  animation: slideDown 0.3s ease;
+}

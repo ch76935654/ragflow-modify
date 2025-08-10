@@ -1,0 +1,391 @@
+// 与主聊天页面保持一致的颜色变量定义
+@primary-color: #1677ff;
+@primary-gradient: linear-gradient(135deg, #1677ff 0%, #0d47a1 100%);
+@primary-light: #f0f7ff;
+@primary-hover: rgba(22, 119, 255, 0.04);
+@primary-active: rgba(22, 119, 255, 0.08);
+@primary-selected: rgba(22, 119, 255, 0.12);
+@border-color: #e6f4ff;
+@glass-bg: rgba(255, 255, 255, 0.95);
+@glass-border: rgba(22, 119, 255, 0.15);
+@shadow-sm: 0 2px 8px rgba(22, 119, 255, 0.08);
+@shadow-md: 0 4px 16px rgba(22, 119, 255, 0.12);
+@shadow-lg: 0 8px 24px rgba(22, 119, 255, 0.15);
+
+.chatWrapper {
+  height: calc(100vh - 64px); // 减去header高度
+  width: 100%;
+  display: flex;
+  background: linear-gradient(135deg, #fafcff 0%, #f0f7ff 100%);
+}
+
+.shareLayoutWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+// 左侧聊天列表面板
+.chatListPanel {
+  width: 320px;
+  min-width: 320px;
+  padding: 20px;
+  background: @glass-bg;
+  border-right: 1px solid @border-color;
+  display: flex;
+  flex-direction: column;
+  box-shadow: @shadow-sm;
+
+  .chatListHeader {
+    margin-bottom: 16px;
+
+    .createChatButton {
+      width: 100%;
+      height: 44px;
+      background: @primary-gradient;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: @shadow-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: @shadow-lg;
+        background: linear-gradient(135deg, #0d5bdd 0%, #0b3d88 100%);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .chatListDivider {
+    margin: 20px 0;
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      @primary-color,
+      transparent
+    );
+    opacity: 0.2;
+  }
+
+  .chatListContent {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .chatListTitle {
+      margin-bottom: 12px;
+      padding: 0 4px;
+
+      .chatCount {
+        background: @primary-color;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 2px 8px;
+        height: auto;
+        line-height: 1.4;
+        box-shadow: 0 2px 4px rgba(22, 119, 255, 0.2);
+      }
+    }
+
+    .chatCards {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 8px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: @primary-light;
+        border-radius: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: @primary-gradient;
+        border-radius: 6px;
+
+        &:hover {
+          background: linear-gradient(135deg, #0d5bdd 0%, #0b3d88 100%);
+        }
+      }
+    }
+  }
+}
+
+// 聊天卡片样式
+.chatCard {
+  margin-bottom: 8px;
+  background: white;
+  border: 1px solid @glass-border;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: @shadow-sm;
+  position: relative;
+  overflow: hidden;
+
+  :global(.ant-card-body) {
+    padding: 12px 16px;
+    width: 100%;
+  }
+
+  .chatName {
+    font-size: 13px;
+    font-weight: 500;
+    color: #666666;
+    margin: 0;
+    transition: color 0.2s ease;
+    flex: 1;
+    min-width: 0;
+    max-width: 200px;
+  }
+
+  .chatActions {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 8px;
+
+    .actionButton {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      color: #999999;
+      background: transparent;
+      border: none;
+      font-size: 12px;
+
+      &:hover {
+        color: @primary-color;
+        background: @primary-hover;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: @primary-color;
+    border-radius: 1px;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    border-color: @primary-color;
+    background: @primary-hover;
+    box-shadow: @shadow-md;
+    transform: translateY(-1px);
+
+    .chatName {
+      color: @primary-color;
+    }
+
+    .chatActions {
+      opacity: 1;
+    }
+
+    &::after {
+      width: 80%;
+    }
+  }
+}
+
+.chatCardSelected {
+  border-color: @primary-color !important;
+  background: @primary-selected !important;
+
+  &::after {
+    width: 80% !important;
+  }
+
+  .chatName {
+    color: @primary-color !important;
+    font-weight: 600 !important;
+  }
+
+  .chatActions {
+    opacity: 1 !important;
+  }
+}
+
+// 分隔线
+.divider {
+  margin: 0;
+  height: 100%;
+  width: 1px;
+  border: none;
+  background: @border-color;
+}
+
+// 右侧聊天容器
+.chatContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  background: #fafcff;
+
+  .chatMainContainer {
+    padding: 20px 24px 24px 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #fafcff 0%, #f0f7ff 100%);
+
+    .messageContainer {
+      overflow-y: auto;
+      padding-right: 16px;
+      flex: 1;
+      margin-bottom: 16px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: rgba(22, 119, 255, 0.05);
+        border-radius: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: @primary-gradient;
+        border-radius: 6px;
+
+        &:hover {
+          background: linear-gradient(135deg, #0d5bdd 0%, #0b3d88 100%);
+        }
+      }
+    }
+  }
+
+  .emptyState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #999999;
+    font-size: 16px;
+  }
+}
+
+// 暗色主题适配
+:global(.dark) {
+  .chatWrapper {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .shareLayoutWrapper {
+    .chatListPanel {
+      background: rgba(30, 41, 59, 0.95);
+      border-right-color: rgba(71, 85, 105, 0.3);
+
+      .chatListDivider {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(22, 119, 255, 0.5),
+          transparent
+        );
+      }
+
+      .chatListContent .chatListTitle {
+        color: #e2e8f0;
+      }
+    }
+
+    .chatCard {
+      background: rgba(51, 65, 85, 0.8);
+      border-color: rgba(71, 85, 105, 0.3);
+
+      .chatName {
+        color: #cbd5e1;
+      }
+
+      .chatActions .actionButton {
+        color: #94a3b8;
+
+        &:hover {
+          color: @primary-color;
+          background: rgba(22, 119, 255, 0.08);
+        }
+      }
+
+      &:hover {
+        border-color: @primary-color;
+        background: rgba(22, 119, 255, 0.08);
+
+        .chatName {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .chatCardSelected {
+      background: rgba(22, 119, 255, 0.15) !important;
+      border-color: @primary-color !important;
+
+      .chatName {
+        color: #ffffff !important;
+      }
+    }
+
+    .divider {
+      background: rgba(71, 85, 105, 0.3);
+    }
+
+    .chatContainer .chatMainContainer {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .emptyState {
+      color: #94a3b8;
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .shareLayoutWrapper {
+    .chatListPanel {
+      width: 280px;
+      min-width: 280px;
+      padding: 16px;
+    }
+
+    .chatContainer .chatMainContainer {
+      padding: 16px;
+    }
+  }
+}

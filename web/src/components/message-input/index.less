@@ -1,0 +1,262 @@
+// 与主题保持一致的颜色变量
+@primary-color: #1677ff;
+@primary-gradient: linear-gradient(135deg, #1677ff 0%, #0d47a1 100%);
+@glass-bg: rgba(255, 255, 255, 0.95);
+@glass-border: rgba(22, 119, 255, 0.15);
+@shadow-sm: 0 2px 8px rgba(22, 119, 255, 0.08);
+@shadow-md: 0 4px 16px rgba(22, 119, 255, 0.12);
+
+.messageInputWrapper {
+  margin-right: 20px;
+  padding: 0;
+  background: @glass-bg;
+  border: 1px solid @glass-border;
+  border-radius: 12px;
+  box-shadow: @shadow-sm;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    border-color: @primary-color;
+    box-shadow: @shadow-md;
+    transform: translateY(-1px);
+  }
+
+  &:focus-within {
+    border-color: @primary-color;
+    box-shadow:
+      0 0 0 3px rgba(22, 119, 255, 0.1),
+      @shadow-md;
+  }
+
+  // 输入框样式
+  :global(.ant-input) {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 12px 16px;
+
+    &::placeholder {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  // 分割线样式
+  :global(.ant-divider) {
+    margin: 8px 20px 12px 20px;
+    border-color: @glass-border;
+  }
+
+  // 底部操作区域
+  .inputActions {
+    padding: 0 16px 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  // 发送按钮样式
+  :global(.ant-btn-primary) {
+    background: @primary-gradient;
+    border: none;
+    border-radius: 8px;
+    box-shadow: @shadow-sm;
+    transition: all 0.3s ease;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: linear-gradient(135deg, #0d5bdd 0%, #0b3d88 100%);
+      box-shadow: @shadow-md;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      background: #d9d9d9;
+      box-shadow: none;
+      transform: none;
+    }
+  }
+
+  // 上传按钮样式
+  :global(.ant-upload) {
+    :global(.ant-btn) {
+      border: 1px solid @glass-border;
+      border-radius: 8px;
+      background: transparent;
+      color: @primary-color;
+      transition: all 0.3s ease;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: rgba(22, 119, 255, 0.08);
+        border-color: @primary-color;
+        transform: translateY(-1px);
+        box-shadow: @shadow-sm;
+      }
+    }
+  }
+}
+
+.documentCard {
+  background: @glass-bg;
+  border: 1px solid @glass-border;
+  border-radius: 8px;
+  box-shadow: @shadow-sm;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: @shadow-md;
+    transform: translateY(-1px);
+  }
+
+  :global(.ant-card-body) {
+    padding: 12px;
+    position: relative;
+    width: 100%;
+  }
+
+  // 文件信息样式
+  .fileInfo {
+    flex: 1;
+    min-width: 0;
+
+    .fileName {
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .fileDetails {
+      font-size: 12px;
+      color: #666666;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+
+.listWrapper {
+  padding: 0 16px;
+  overflow: auto;
+  max-height: 200px;
+  width: 100%;
+
+  // 自定义滚动条
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(22, 119, 255, 0.05);
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: @primary-gradient;
+    border-radius: 6px;
+
+    &:hover {
+      background: linear-gradient(135deg, #0d5bdd 0%, #0b3d88 100%);
+    }
+  }
+
+  // 文件列表网格
+  :global(.ant-list-grid) .ant-col {
+    margin-bottom: 8px;
+  }
+}
+
+.inputWrapper {
+  border-radius: 12px;
+}
+
+.deleteIcon {
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  color: #ef4444;
+  background: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: @shadow-sm;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #ef4444;
+    color: white;
+    transform: scale(1.1);
+  }
+}
+
+// 暗色主题适配
+:global(.dark) {
+  .messageInputWrapper {
+    background: rgba(51, 65, 85, 0.9);
+    border-color: rgba(71, 85, 105, 0.3);
+
+    &:hover {
+      border-color: @primary-color;
+    }
+
+    :global(.ant-input) {
+      background: transparent;
+      color: #e2e8f0;
+
+      &::placeholder {
+        color: #94a3b8;
+      }
+    }
+
+    :global(.ant-divider) {
+      border-color: rgba(71, 85, 105, 0.3);
+    }
+  }
+
+  .documentCard {
+    background: rgba(71, 85, 105, 0.5);
+    border-color: rgba(71, 85, 105, 0.3);
+
+    .fileInfo {
+      .fileName {
+        color: #e2e8f0;
+      }
+
+      .fileDetails {
+        color: #94a3b8;
+      }
+    }
+  }
+
+  .deleteIcon {
+    background: rgba(51, 65, 85, 0.9);
+    color: #ef4444;
+
+    &:hover {
+      background: #ef4444;
+      color: white;
+    }
+  }
+}

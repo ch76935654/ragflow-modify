@@ -1,0 +1,680 @@
+// 与Header保持一致的颜色变量定义
+@primary-color: #1677ff;
+@primary-gradient: linear-gradient(135deg, #1677ff 0%, #0d47a1 100%);
+@primary-light: #f0f7ff;
+@primary-hover: rgba(22, 119, 255, 0.04);
+@primary-active: rgba(22, 119, 255, 0.08);
+@primary-selected: rgba(22, 119, 255, 0.12);
+@border-color: #e6f4ff;
+@glass-bg: rgba(255, 255, 255, 0.95);
+@glass-border: rgba(22, 119, 255, 0.15);
+@shadow-sm: 0 2px 8px rgba(22, 119, 255, 0.08);
+@shadow-md: 0 4px 16px rgba(22, 119, 255, 0.12);
+@shadow-lg: 0 8px 24px rgba(22, 119, 255, 0.15);
+
+.chatWrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background: linear-gradient(135deg, #fafcff 0%, #f0f7ff 100%);
+  position: relative;
+
+  // 左侧助手面板
+  .chatAssistantPanel,
+  .chatAppWrapper {
+    width: 320px;
+    min-width: 320px;
+    padding: 24px 20px 20px 20px;
+    background: @glass-bg;
+    border-right: 1px solid @border-color;
+    display: flex;
+    flex-direction: column;
+    box-shadow: @shadow-sm;
+
+    .chatAssistantHeader {
+      margin-bottom: 16px; // 减少底部间距，让列表更靠近按钮
+      padding-top: 8px; // 增加顶部内边距使按钮视觉上更居中
+
+      .createAssistantButton {
+        width: 100%;
+        height: 44px;
+        background: @primary-gradient;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: @shadow-md;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 2px;
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 1px;
+          transition: width 0.3s ease;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: @shadow-lg;
+          background: linear-gradient(135deg, #0d5bdd 0%, #0b3d88 100%);
+
+          &::after {
+            width: 60%;
+          }
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+
+    .assistantDivider {
+      margin: 24px 0;
+      border: none;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        @primary-color,
+        transparent
+      );
+      opacity: 0.2;
+    }
+
+    .chatAssistantContent,
+    .chatAppContent {
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 8px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: @primary-light;
+        border-radius: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: @primary-gradient;
+        border-radius: 6px;
+
+        &:hover {
+          background: linear-gradient(135deg, #0d5bdd 0%, #0b3d88 100%);
+        }
+      }
+    }
+
+    .chatAssistantCard,
+    .chatAppCard {
+      background: white;
+      border: 1px solid @glass-border;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      margin-top: 4px;
+      transition: all 0.3s ease;
+      box-shadow: @shadow-sm;
+      position: relative;
+      overflow: hidden; // 防止内容溢出
+
+      &:first-child {
+        margin-top: 8px;
+      }
+
+      :global(.ant-card-body) {
+        padding: 16px;
+        width: 100%; // 确保内容不会溢出
+      }
+
+      .assistantInfo {
+        flex: 1;
+        min-width: 0; // 防止flex子项溢出
+      }
+
+      .assistantName {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 4px;
+        color: #1a1a1a;
+        transition: color 0.2s ease;
+      }
+
+      .assistantDescription {
+        font-size: 12px;
+        color: #666666;
+        line-height: 1.4;
+      }
+
+      // 操作按钮容器
+      .assistantActions {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        flex-shrink: 0;
+        margin-left: 8px;
+
+        .actionButton {
+          width: 24px;
+          height: 24px;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          color: #999999;
+          background: transparent;
+          border: none;
+
+          &:hover {
+            color: @primary-color;
+            background: @primary-hover;
+          }
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        background: @primary-color;
+        border-radius: 0 2px 2px 0;
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        border-color: @primary-color;
+        background: @primary-hover;
+        box-shadow: @shadow-md;
+        transform: translateY(-1px);
+
+        .assistantName {
+          color: @primary-color;
+        }
+
+        .assistantActions {
+          opacity: 1;
+        }
+
+        &::after {
+          height: 60%;
+          width: 3px;
+        }
+      }
+    }
+
+    .chatAssistantCardSelected,
+    .chatAppCardSelected {
+      border-color: @primary-color !important;
+      background: @primary-selected !important;
+      box-shadow: @shadow-md !important;
+
+      &::after {
+        height: 60% !important;
+        width: 3px !important;
+      }
+
+      .assistantName {
+        color: @primary-color !important;
+        font-weight: 600 !important;
+      }
+
+      .assistantActions {
+        opacity: 1 !important;
+      }
+    }
+
+    .chatAssistantCardSelectedDark,
+    .chatAppCardSelectedDark {
+      border-color: @primary-color !important;
+      background: rgba(22, 119, 255, 0.15) !important;
+    }
+  }
+
+  // 右侧聊天面板
+  .chatRightPanel,
+  .chatTitleWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+    background: @glass-bg;
+    border-left: 1px solid @border-color;
+  }
+
+  // 聊天列表区域 - 修改为横向滚动
+  .chatConversationPanel,
+  .chatTitle,
+  .chatTitleContent {
+    min-height: 130px;
+    max-height: 130px;
+    padding: 16px 24px 8px 24px;
+    background: white;
+    border-bottom: 1px solid @border-color;
+    overflow: hidden; // 修改：隐藏垂直滚动
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px; // 添加：横向滚动条高度
+    }
+
+    &::-webkit-scrollbar-track {
+      background: @primary-light;
+      border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: @primary-gradient;
+      border-radius: 6px;
+    }
+
+    .chatConversationHeader {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .chatTitle {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        min-height: auto;
+        max-height: auto;
+      }
+
+      .conversationCount {
+        background: @primary-color;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 2px 8px;
+        height: auto;
+        line-height: 1.4;
+        box-shadow: 0 2px 4px rgba(22, 119, 255, 0.2);
+      }
+
+      .newChatButton {
+        width: 32px;
+        height: 32px;
+        border: 1px solid @glass-border;
+        background: white;
+        color: @primary-color;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        padding: 0;
+
+        &:hover {
+          background: @primary-hover;
+          border-color: @primary-color;
+          color: @primary-color;
+        }
+
+        &:active {
+          background: @primary-active;
+        }
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .chatConversationContent {
+      display: flex;
+      flex-wrap: nowrap; // 修改：禁止换行
+      gap: 8px;
+      max-height: 80px; // 修改：减少高度为滚动条留空间
+      overflow-x: auto; // 修改：启用横向滚动
+      overflow-y: hidden; // 修改：禁用垂直滚动
+      padding-bottom: 8px; // 添加：为滚动条留出空间
+      margin-bottom: 8px; // 添加：增加底部间距
+
+      // 添加：横向滚动条样式
+      &::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: @primary-light;
+        border-radius: 6px;
+        margin: 0 8px; // 添加：滚动条轨道边距
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: @primary-gradient;
+        border-radius: 6px;
+
+        &:hover {
+          background: linear-gradient(135deg, #0d5bdd 0%, #0b3d88 100%);
+        }
+      }
+    }
+
+    .chatConversationCard,
+    .chatTitleCard {
+      min-width: 200px;
+      max-width: 250px;
+      flex-shrink: 0; // 添加：防止卡片被压缩
+      background: white;
+      border: 1px solid @glass-border;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden; // 防止内容溢出
+
+      :global(.ant-card-body) {
+        padding: 12px 16px;
+        width: 100%; // 确保内容不会溢出
+      }
+
+      // 对话卡片内容容器
+      .conversationCardContent {
+        width: 100%;
+        align-items: center;
+      }
+
+      .conversationName {
+        font-size: 13px;
+        font-weight: 500;
+        color: #666666;
+        margin: 0;
+        transition: color 0.2s ease;
+        flex: 1;
+        min-width: 0; // 防止文本溢出
+        max-width: 160px; // 为操作按钮预留空间
+      }
+
+      // 对话操作按钮容器
+      .conversationActions {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        flex-shrink: 0;
+        margin-left: 8px;
+
+        .actionButton {
+          width: 20px;
+          height: 20px;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          color: #999999;
+          background: transparent;
+          border: none;
+          font-size: 12px;
+
+          &:hover {
+            color: @primary-color;
+            background: @primary-hover;
+          }
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: @primary-color;
+        border-radius: 1px;
+        transition: width 0.3s ease;
+      }
+
+      &:hover {
+        border-color: @primary-color;
+        background: @primary-hover;
+        box-shadow: @shadow-sm;
+
+        .conversationName {
+          color: @primary-color;
+        }
+
+        .conversationActions {
+          opacity: 1;
+        }
+
+        &::after {
+          width: 80%;
+        }
+      }
+    }
+
+    .chatConversationCardSelected,
+    .chatTitleCardSelected {
+      border-color: @primary-color !important;
+      background: @primary-selected !important;
+
+      &::after {
+        width: 80% !important;
+      }
+
+      .conversationName {
+        color: @primary-color !important;
+        font-weight: 600 !important;
+      }
+
+      .conversationActions {
+        opacity: 1 !important;
+      }
+    }
+
+    .chatConversationCardSelectedDark,
+    .chatTitleCardSelectedDark {
+      border-color: @primary-color !important;
+      background: rgba(22, 119, 255, 0.15) !important;
+    }
+  }
+
+  .conversationDivider {
+    margin: 0;
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      @primary-color,
+      transparent
+    );
+    opacity: 0.2;
+  }
+
+  // 聊天主容器
+  .chatMainContainer {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: #fafcff;
+    padding-top: 4px;
+  }
+
+  .divider {
+    margin: 0;
+    height: 100%;
+    width: 1px;
+    border: none;
+    background: @border-color;
+  }
+
+  .chatSpin {
+    :global(.ant-spin-container) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    :global(.ant-spin-dot) {
+      color: @primary-color;
+    }
+  }
+
+  // 暗色主题适配
+  :global(.dark) & {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+
+    .chatAssistantPanel,
+    .chatAppWrapper {
+      background: rgba(30, 41, 59, 0.95);
+      border-right-color: rgba(71, 85, 105, 0.3);
+
+      .assistantDivider {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(22, 119, 255, 0.5),
+          transparent
+        );
+      }
+
+      .chatAssistantCard,
+      .chatAppCard {
+        background: rgba(51, 65, 85, 0.8);
+        border-color: rgba(71, 85, 105, 0.3);
+
+        .assistantName {
+          color: #e2e8f0;
+        }
+
+        .assistantDescription {
+          color: #94a3b8;
+        }
+
+        .assistantActions .actionButton {
+          color: #94a3b8;
+
+          &:hover {
+            color: @primary-color;
+            background: rgba(22, 119, 255, 0.08);
+          }
+        }
+
+        &:hover {
+          border-color: @primary-color;
+          background: rgba(22, 119, 255, 0.08);
+
+          .assistantName {
+            color: #ffffff;
+          }
+        }
+      }
+
+      .chatAssistantCardSelected,
+      .chatAppCardSelected {
+        background: rgba(22, 119, 255, 0.15) !important;
+        border-color: @primary-color !important;
+
+        .assistantName {
+          color: #ffffff !important;
+        }
+      }
+    }
+
+    .chatRightPanel,
+    .chatTitleWrapper {
+      background: rgba(30, 41, 59, 0.95);
+      border-left-color: rgba(71, 85, 105, 0.3);
+    }
+
+    .chatConversationPanel,
+    .chatTitle,
+    .chatTitleContent {
+      background: rgba(51, 65, 85, 0.8);
+      border-bottom-color: rgba(71, 85, 105, 0.3);
+
+      .chatConversationHeader .chatTitle {
+        color: #e2e8f0;
+      }
+
+      .chatConversationCard,
+      .chatTitleCard {
+        background: rgba(71, 85, 105, 0.5);
+        border-color: rgba(71, 85, 105, 0.3);
+
+        .conversationName {
+          color: #cbd5e1;
+        }
+
+        .conversationActions .actionButton {
+          color: #94a3b8;
+
+          &:hover {
+            color: @primary-color;
+            background: rgba(22, 119, 255, 0.08);
+          }
+        }
+
+        &:hover {
+          border-color: @primary-color;
+          background: rgba(22, 119, 255, 0.08);
+
+          .conversationName {
+            color: #ffffff;
+          }
+        }
+      }
+
+      .chatConversationCardSelected,
+      .chatTitleCardSelected {
+        background: rgba(22, 119, 255, 0.15) !important;
+        border-color: @primary-color !important;
+
+        .conversationName {
+          color: #ffffff !important;
+        }
+      }
+    }
+
+    .chatMainContainer {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .conversationDivider {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(22, 119, 255, 0.4),
+        transparent
+      );
+    }
+
+    .divider {
+      background: rgba(71, 85, 105, 0.3);
+    }
+  }
+}

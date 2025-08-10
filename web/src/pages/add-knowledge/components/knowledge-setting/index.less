@@ -1,0 +1,510 @@
+// 修复布局的配置页面样式
+.configurationWrapper {
+  padding: 32px;
+  background: #ffffff;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  :global(.dark) & {
+    background: #1e293b;
+  }
+
+  // 自定义滚动条样式
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+
+    :global(.dark) & {
+      background: #0f172a;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #94a3b8;
+    }
+
+    :global(.dark) & {
+      background: #475569;
+
+      &:hover {
+        background: #64748b;
+      }
+    }
+  }
+}
+
+.configurationForm {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 32px;
+
+  // 分割线样式
+  :global(.ant-divider) {
+    margin: 32px 0;
+    border-color: #e5e7eb;
+
+    :global(.dark) & {
+      border-color: #374151;
+    }
+  }
+}
+
+.buttonWrapper {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+
+  :global(.dark) & {
+    border-top: 1px solid #374151;
+  }
+
+  :global(.ant-btn) {
+    height: 44px;
+    padding: 0 32px;
+    font-weight: 500;
+    border-radius: 8px;
+    font-size: 15px;
+    min-width: 120px;
+
+    &:global(.ant-btn-primary) {
+      background: #3b82f6;
+      border-color: #3b82f6;
+
+      &:hover {
+        background: #2563eb;
+        border-color: #2563eb;
+      }
+    }
+
+    &:global(.ant-btn-default) {
+      border-color: #d1d5db;
+      color: #6b7280;
+
+      &:hover {
+        border-color: #3b82f6;
+        color: #3b82f6;
+      }
+
+      :global(.dark) & {
+        background: #374151;
+        border-color: #4b5563;
+        color: #d1d5db;
+
+        &:hover {
+          border-color: #60a5fa;
+          color: #60a5fa;
+        }
+      }
+    }
+  }
+}
+
+// 保留变量滑块样式类
+.variableSlider {
+  width: 100%;
+}
+
+// 全局表单项样式 - 恢复正常布局
+:global(.ant-form-item) {
+  margin-bottom: 24px;
+
+  :global(.ant-form-item-label) {
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 8px;
+
+    :global(.dark) & {
+      color: #d1d5db;
+    }
+
+    :global(.ant-form-item-required)::before {
+      color: #ef4444;
+    }
+  }
+
+  // 输入框通用样式
+  :global(.ant-input),
+  :global(.ant-input-number),
+  :global(.ant-select-selector),
+  :global(.ant-input-number-input) {
+    border-radius: 8px;
+    border-color: #d1d5db;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background: #ffffff;
+
+    &:hover {
+      border-color: #9ca3af;
+    }
+
+    &:focus,
+    &:global(.ant-input-focused),
+    &:global(.ant-select-focused) :global(.ant-select-selector) {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      background: #ffffff;
+    }
+
+    :global(.dark) & {
+      background: #374151;
+      border-color: #4b5563;
+      color: #d1d5db;
+
+      &:hover {
+        border-color: #6b7280;
+      }
+
+      &:focus,
+      &:global(.ant-input-focused),
+      &:global(.ant-select-focused) :global(.ant-select-selector) {
+        border-color: #60a5fa;
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        background: #374151;
+      }
+    }
+  }
+
+  :global(.ant-input) {
+    height: 44px;
+    padding: 0 16px;
+  }
+
+  :global(.ant-input-number) {
+    height: 44px;
+    width: 100%;
+
+    :global(.ant-input-number-input) {
+      height: 42px;
+      padding: 0 15px;
+    }
+  }
+
+  :global(.ant-select) {
+    width: 100%;
+
+    :global(.ant-select-selector) {
+      height: 44px;
+      padding: 0 15px;
+
+      :global(.ant-select-selection-item),
+      :global(.ant-select-selection-placeholder) {
+        line-height: 42px;
+      }
+    }
+  }
+
+  // 单选按钮组样式
+  :global(.ant-radio-group) {
+    :global(.ant-radio-wrapper) {
+      margin-right: 24px;
+      color: #374151;
+      font-size: 14px;
+
+      :global(.dark) & {
+        color: #d1d5db;
+      }
+
+      :global(.ant-radio) {
+        :global(.ant-radio-input) {
+          &:focus + :global(.ant-radio-inner) {
+            border-color: #3b82f6;
+          }
+        }
+
+        :global(.ant-radio-inner) {
+          border-color: #d1d5db;
+
+          :global(.dark) & {
+            border-color: #4b5563;
+            background: #374151;
+          }
+        }
+
+        &:global(.ant-radio-checked) {
+          :global(.ant-radio-inner) {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+
+            &::after {
+              background-color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 开关样式
+  :global(.ant-switch) {
+    &:global(.ant-switch-checked) {
+      background: #3b82f6;
+
+      &:hover {
+        background: #2563eb;
+      }
+    }
+
+    &:not(:global(.ant-switch-checked)) {
+      background: #d1d5db;
+
+      :global(.dark) & {
+        background: #4b5563;
+      }
+
+      &:hover {
+        background: #9ca3af;
+
+        :global(.dark) & {
+          background: #6b7280;
+        }
+      }
+    }
+  }
+
+  // 上传组件样式
+  :global(.ant-upload) {
+    :global(.ant-upload-select) {
+      border-radius: 8px;
+      border-color: #d1d5db;
+      transition: all 0.2s ease;
+      background: #ffffff;
+
+      &:hover {
+        border-color: #3b82f6;
+      }
+
+      :global(.dark) & {
+        background: #374151;
+        border-color: #4b5563;
+
+        &:hover {
+          border-color: #60a5fa;
+        }
+      }
+    }
+  }
+}
+
+// 只隐藏滑块组件，保持容器的背景清理
+:global {
+  // 精确隐藏滑块相关组件
+  .ant-slider {
+    display: none !important;
+  }
+
+  // 隐藏包含滑块的Flex容器中的滑块部分
+  .ant-space-item:has(.ant-slider) {
+    display: none !important;
+  }
+
+  // 清除特定配置容器的背景，但保持正常的padding和margin
+  .dataset-configuration-container,
+  .parse-configuration-container {
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    :global(.dark) & {
+      background: #1e293b !important;
+    }
+
+    // 清除嵌套卡片的背景
+    .ant-card {
+      background: #ffffff !important;
+      border: none !important;
+      box-shadow: none !important;
+
+      :global(.dark) & {
+        background: #1e293b !important;
+      }
+
+      .ant-card-body {
+        background: #ffffff !important;
+
+        :global(.dark) & {
+          background: #1e293b !important;
+        }
+      }
+
+      .ant-card-head {
+        background: #ffffff !important;
+        border: none !important;
+
+        :global(.dark) & {
+          background: #1e293b !important;
+        }
+      }
+    }
+  }
+
+  // 清除其他配置容器背景，但不重置padding和margin
+  .similarity-slider-container,
+  .rerank-container,
+  .page-rank-container,
+  .auto-keywords-container,
+  .auto-questions-container,
+  .layout-recognize-container,
+  .delimiter-container,
+  .entity-types-container,
+  .excel-to-html-container,
+  .cross-language-container,
+  .use-knowledge-graph-container,
+  .tag-items-container,
+  .tag-set-container,
+  .topn-tags-container,
+  .graph-rag-container,
+  .max-token-container {
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    :global(.dark) & {
+      background: #1e293b !important;
+    }
+
+    // 不重置内部元素的padding和margin，保持正常布局
+    .ant-form-item {
+      margin-bottom: 24px;
+    }
+
+    .ant-form-item-label {
+      margin-bottom: 8px;
+    }
+  }
+
+  // 确保分割线正常显示
+  .ant-divider {
+    border-color: #e5e7eb !important;
+    margin: 24px 0 !important;
+
+    :global(.dark) & {
+      border-color: #374151 !important;
+    }
+  }
+
+  // 保持Ant Design组件的正常间距
+  .ant-space {
+    background: transparent !important;
+  }
+
+  .ant-space-item {
+    background: transparent !important;
+  }
+
+  // 保持表单控件的正常布局
+  .ant-form-item-control {
+    background: transparent !important;
+  }
+
+  .ant-form-item-control-input {
+    background: transparent !important;
+  }
+
+  .ant-form-item-control-input-content {
+    background: transparent !important;
+  }
+
+  // 确保栅格系统正常工作
+  .ant-row {
+    background: transparent !important;
+  }
+
+  .ant-col {
+    background: transparent !important;
+  }
+}
+
+// 响应式设计
+@media (max-width: 1024px) {
+  .configurationWrapper {
+    padding: 24px 20px;
+    height: calc(100vh - 64px);
+  }
+
+  .configurationForm {
+    :global(.ant-row) {
+      :global(.ant-col) {
+        &:global(.ant-col-12) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .configurationWrapper {
+    padding: 20px 16px;
+    height: calc(100vh - 64px);
+  }
+
+  :global(.ant-form-item) {
+    margin-bottom: 20px;
+
+    :global(.ant-input),
+    :global(.ant-input-number),
+    :global(.ant-select-selector) {
+      height: 40px;
+    }
+
+    :global(.ant-select) {
+      :global(.ant-select-selector) {
+        :global(.ant-select-selection-item),
+        :global(.ant-select-selection-placeholder) {
+          line-height: 38px;
+        }
+      }
+    }
+  }
+
+  .buttonWrapper {
+    :global(.ant-space) {
+      width: 100%;
+      flex-direction: column;
+
+      :global(.ant-space-item) {
+        width: 100%;
+
+        :global(.ant-btn) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// 工具提示样式
+:global(.ant-tooltip) {
+  :global(.ant-tooltip-inner) {
+    background: #111827;
+    color: #f9fafb;
+    border-radius: 6px;
+    font-size: 13px;
+
+    :global(.dark) & {
+      background: #f9fafb;
+      color: #111827;
+    }
+  }
+
+  :global(.ant-tooltip-arrow) {
+    :global(.ant-tooltip-arrow-content) {
+      background: #111827;
+
+      :global(.dark) & {
+        background: #f9fafb;
+      }
+    }
+  }
+}

@@ -1,0 +1,187 @@
+.messageItemWrapper {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  animation: fadeInUp 0.3s ease;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // 用户消息布局
+  &.userMessage {
+    flex-direction: row-reverse;
+    margin-left: 48px;
+
+    .messageContent {
+      background: linear-gradient(135deg, #e6f4ff 0%, #f0f7ff 100%);
+      border: 1px solid rgba(22, 119, 255, 0.2);
+    }
+
+    // 用户消息气泡箭头
+    .messageContent::before {
+      right: -16px;
+      border-left-color: #e6f4ff;
+    }
+  }
+
+  // 助手消息布局
+  &.assistantMessage {
+    margin-right: 48px;
+
+    .messageContent {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(22, 119, 255, 0.15);
+    }
+
+    // 助手消息气泡箭头
+    .messageContent::before {
+      left: -16px;
+      border-right-color: rgba(255, 255, 255, 0.95);
+    }
+  }
+
+  // 头像样式
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid rgba(22, 119, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(22, 119, 255, 0.15);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    display: block;
+    overflow: hidden;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(22, 119, 255, 0.25);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // 消息内容
+  .messageContent {
+    flex: 1;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(22, 119, 255, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 0;
+    word-wrap: break-word;
+    line-height: 1.6;
+    font-size: 14px;
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(22, 119, 255, 0.12);
+      transform: translateY(-1px);
+    }
+
+    // 消息气泡箭头
+    &::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+    }
+
+    // 确保内容对齐
+    p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    // 处理代码块等特殊内容
+    pre,
+    code {
+      line-height: 1.4;
+    }
+  }
+
+  // 操作按钮
+  .messageActions {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+
+    .actionButton {
+      padding: 4px 8px;
+      background: rgba(22, 119, 255, 0.1);
+      border: 1px solid rgba(22, 119, 255, 0.2);
+      border-radius: 4px;
+      color: #1677ff;
+      font-size: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(22, 119, 255, 0.2);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  &:hover .messageActions {
+    opacity: 1;
+  }
+}
+
+// 暗色主题适配
+:global(.dark) {
+  .messageItemWrapper {
+    &.userMessage .messageContent {
+      background: rgba(22, 119, 255, 0.15);
+      border-color: rgba(22, 119, 255, 0.3);
+
+      &::before {
+        border-left-color: rgba(22, 119, 255, 0.15);
+      }
+    }
+
+    &.assistantMessage .messageContent {
+      background: rgba(51, 65, 85, 0.8);
+      border-color: rgba(71, 85, 105, 0.3);
+      color: #e2e8f0;
+
+      &::before {
+        border-right-color: rgba(51, 65, 85, 0.8);
+      }
+    }
+
+    .avatar {
+      border-color: rgba(71, 85, 105, 0.3);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .messageActions .actionButton {
+      background: rgba(71, 85, 105, 0.5);
+      border-color: rgba(71, 85, 105, 0.3);
+      color: #e2e8f0;
+
+      &:hover {
+        background: rgba(22, 119, 255, 0.2);
+        border-color: #1677ff;
+        color: #ffffff;
+      }
+    }
+  }
+}
